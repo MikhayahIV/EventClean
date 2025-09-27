@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: EventClean
+  datasource:
+    url: ${DATABASE_URL}
+    driver-class-name: org.postgresql.Driver
+    username: ${DATABASE_USERNAME}
+    password: '${DATABASE_PASSWORD}'
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        ddl-auto: update
+        show-sql: true
+  flyway:
+    enabled: true
+    locations: classpath:db/migrations
