@@ -1,5 +1,6 @@
 package six.jay.EventClean.infrastructure.presentation;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import six.jay.EventClean.core.entities.Evento;
 import six.jay.EventClean.core.useCases.CriarEventoUseCase;
@@ -7,7 +8,9 @@ import six.jay.EventClean.core.useCases.ListarEventosUseCase;
 import six.jay.EventClean.infrastructure.dto.EventoDto;
 import six.jay.EventClean.infrastructure.mapper.EventoDtoMapper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -25,9 +28,12 @@ public class EventoController {
     }
 
     @PostMapping("criarevento")
-    public EventoDto criarEvento(@RequestBody EventoDto dto){
+    public ResponseEntity<Map<String,Object>> criarEvento(@RequestBody EventoDto dto){
         Evento evento = criarEventoUseCase.execute(mapper.toDomain(dto));
-        return mapper.toDto(evento);
+        Map<String,Object> response = new HashMap<>();
+        response.put("Message: ", "Evento cadastrado no banco de dado.");
+        response.put("Dados: ",mapper.toDto(evento));
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("listareventos")
