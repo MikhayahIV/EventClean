@@ -6,6 +6,7 @@ import six.jay.EventClean.core.gateway.EventoGateway;
 import six.jay.EventClean.infrastructure.mapper.EventoEntityMapper;
 import six.jay.EventClean.infrastructure.persistence.EventoEntity;
 import six.jay.EventClean.infrastructure.persistence.EventoRepository;
+import java.util.List;
 
 @Component
 public class EventoRepositoryGateway implements EventoGateway {
@@ -24,5 +25,10 @@ public class EventoRepositoryGateway implements EventoGateway {
         EventoEntity eventoEntity = mapper.toEntity(evento);
         EventoEntity novoEvent = repository.save(eventoEntity);
         return mapper.toDomain(novoEvent);
+    }
+
+    @Override
+    public List<Evento> listarEventos() {
+        return repository.findAll().stream().map(mapper::toDomain).toList();
     }
 }
