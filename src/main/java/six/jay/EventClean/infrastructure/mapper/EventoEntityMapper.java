@@ -1,8 +1,10 @@
 package six.jay.EventClean.infrastructure.mapper;
 
+import org.springframework.stereotype.Component;
 import six.jay.EventClean.core.entities.Evento;
 import six.jay.EventClean.infrastructure.persistence.EventoEntity;
 
+@Component
 public class EventoEntityMapper {
     public EventoEntity toEntity(Evento evento){
         return new EventoEntity(

@@ -1,8 +1,10 @@
 package six.jay.EventClean.infrastructure.mapper;
 
+import org.springframework.stereotype.Component;
 import six.jay.EventClean.core.entities.Evento;
 import six.jay.EventClean.infrastructure.dto.EventoDto;
 
+@Component
 public class EventoDtoMapper {
     public EventoDto toDto(Evento evento){
         return new EventoDto(

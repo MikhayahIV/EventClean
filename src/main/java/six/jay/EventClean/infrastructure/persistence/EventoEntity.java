@@ -6,7 +6,7 @@ import six.jay.EventClean.core.enums.TiposEvento;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "tb_event")
+@Table(name = "tb_events")
 public class EventoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,7 +1,28 @@
 package six.jay.EventClean.infrastructure.gateway;
 
+import org.springframework.stereotype.Component;
+import six.jay.EventClean.core.entities.Evento;
 import six.jay.EventClean.core.gateway.EventoGateway;
+import six.jay.EventClean.infrastructure.mapper.EventoEntityMapper;
+import six.jay.EventClean.infrastructure.persistence.EventoEntity;
+import six.jay.EventClean.infrastructure.persistence.EventoRepository;
 
+@Component
 public class EventoRepositoryGateway implements EventoGateway {
 
+    private final EventoRepository repository;
+    private final EventoEntityMapper mapper;
+
+    public EventoRepositoryGateway(EventoRepository repository, EventoEntityMapper mapper) {
+        this.repository = repository;
+        this.mapper = mapper;
+    }
+
+
+    @Override
+    public Evento criarEvento(Evento evento) {
+        EventoEntity eventoEntity = mapper.toEntity(evento);
+        EventoEntity novoEvent = repository.save(eventoEntity);
+        return mapper.toDomain(novoEvent);
+    }
 }
