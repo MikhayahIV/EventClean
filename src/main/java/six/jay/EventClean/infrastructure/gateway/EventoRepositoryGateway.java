@@ -7,6 +7,8 @@ import six.jay.EventClean.infrastructure.mapper.EventoEntityMapper;
 import six.jay.EventClean.infrastructure.persistence.EventoEntity;
 import six.jay.EventClean.infrastructure.persistence.EventoRepository;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 public class EventoRepositoryGateway implements EventoGateway {
@@ -35,5 +37,11 @@ public class EventoRepositoryGateway implements EventoGateway {
     @Override
     public boolean identificadorExiste(String identificador) {
         return repository.findAll().stream().anyMatch(evento -> evento.getIdentificador().equalsIgnoreCase(identificador));
+    }
+
+
+    @Override
+    public Optional<Evento> filtrarEventoIdentificador(String identificador) {
+        return repository.findByidentificador(identificador);
     }
 }

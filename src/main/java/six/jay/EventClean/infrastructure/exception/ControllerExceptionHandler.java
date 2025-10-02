@@ -17,4 +17,12 @@ public class ControllerExceptionHandler {
             response.put("Message: ","Por favor, insira um identificador valido para o evento");
             return new  ResponseEntity<>(response,HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(NotFoundEventException.class)
+    public ResponseEntity<Map<String,String>> handleNotFoundEventException(NotFoundEventException ex){
+        Map<String,String> response = new HashMap<>();
+        response.put("Error: ", ex.getMessage());
+        response.put("Message: ", "Por favor, insira um identificador existente");
+        return  new ResponseEntity<>(response,HttpStatus.CONFLICT);
+    }
 }
