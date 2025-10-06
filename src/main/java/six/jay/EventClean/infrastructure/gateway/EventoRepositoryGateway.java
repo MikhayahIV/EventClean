@@ -8,7 +8,6 @@ import six.jay.EventClean.infrastructure.persistence.EventoEntity;
 import six.jay.EventClean.infrastructure.persistence.EventoRepository;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Component
 public class EventoRepositoryGateway implements EventoGateway {
