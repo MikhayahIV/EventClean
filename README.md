@@ -90,6 +90,12 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 * **Docker** e **Docker Compose**
 * **Maven** (ou use o wrapper incluso)
 
+* ### ⚙️ Configuração de Variáveis de Ambiente
+
+Este projeto utiliza **variáveis de ambiente** para gerenciar as configurações de conexão com o banco de dados **PostgreSQL** e do **Docker**, garantindo a segurança das credenciais e a portabilidade do código.
+
+O projeto **não funcionará** sem estas variáveis.
+
 ### Passos
 
 1.  **Clone o repositório:**
@@ -97,6 +103,25 @@ Certifique-se de ter as seguintes ferramentas instaladas:
     git clone [https://github.com/MikhayahIV/EventClean](https://github.com/MikhayahIV/EventClean)
     cd EventClean
     ```
+
+    Para que o projeto funcione corretamente, é necessário configurar as credenciais do **PostgreSQL** e do **Docker**:
+
+2.  Localize o arquivo de exemplo `env.example` na raiz do projeto.
+   
+3.  Crie uma cópia e renomeie-a para **`.env`**.
+   
+5.  Preencha as variáveis abaixo com suas configurações locais (tanto para a aplicação quanto para o container Docker):
+
+| Variável | Uso | Descrição | Exemplo de Uso (Local) |
+| :--- | :--- | :--- | :--- |
+| `DATABASE_URL` | **Spring Boot** | URL de conexão JDBC. Use `localhost` se a aplicação não estiver no Docker. | `jdbc:postgresql://localhost:5432/SUA_BASE` |
+| `DATABASE_USERNAME` | **Spring Boot** | Usuário de acesso para a aplicação. | `user_app` |
+| `DATABASE_PASSWORD` | **Spring Boot** | Senha do usuário de acesso. | `senha_app_forte` |
+| `POSTGRES_DB` | **Docker** | Nome da base de dados que será criada no container. | `SUA_BASE` |
+| `POSTGRES_USER` | **Docker** | Usuário inicial do container. | `postgres` |
+| `POSTGRES_PASSWORD` | **Docker** | Senha do usuário inicial do container. | `senha_docker_forte` |
+
+> ⚠️ **IMPORTANTE:** O arquivo **`.env`** está no `.gitignore` e **nunca** deve ser enviado para o repositório público. Mantenha suas credenciais seguras!
 
 2.  **Inicie os containers com Docker Compose:**
     Este comando irá levantar o container da aplicação e o container do banco de dados PostgreSQL.
