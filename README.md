@@ -110,7 +110,7 @@ O projeto **não funcionará** sem estas variáveis.
    
 3.  Crie uma cópia e renomeie-a para **`.env`**.
    
-5.  Preencha as variáveis abaixo com suas configurações locais (tanto para a aplicação quanto para o container Docker):
+4.  Preencha as variáveis abaixo com suas configurações locais (tanto para a aplicação quanto para o container Docker):
 
 | Variável | Uso | Descrição | Exemplo de Uso (Local) |
 | :--- | :--- | :--- | :--- |
@@ -123,14 +123,14 @@ O projeto **não funcionará** sem estas variáveis.
 
 > ⚠️ **IMPORTANTE:** O arquivo **`.env`** está no `.gitignore` e **nunca** deve ser enviado para o repositório público. Mantenha suas credenciais seguras!
 
-2.  **Inicie os containers com Docker Compose:**
+5.  **Inicie os containers com Docker Compose:**
     Este comando irá levantar o container da aplicação e o container do banco de dados PostgreSQL.
     ```bash
     docker-compose up --build
     ```
     *A aplicação estará acessível em `http://localhost:8080`.*
 
-3.  **Acesse a Documentação da API (Swagger):**
+6.  **Acesse a Documentação da API (Swagger):**
     Com o servidor rodando, a documentação interativa do **Swagger/OpenAPI** estará disponível em:
     ```
     http://localhost:8080/swagger-ui.html
